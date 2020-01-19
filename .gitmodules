@@ -1,0 +1,3 @@
+[submodule "Pix2Pix"]
+	path = Pix2Pix
+	url = git@github.com:sagars729/Pix2Pix.git
