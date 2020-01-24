@@ -20,6 +20,7 @@ import cv2
 import argparse
 import matplotlib.pyplot as plt
 from keras.utils import generic_utils
+import time
 try:
 	import cPickle as pickle 
 except:
@@ -33,6 +34,8 @@ parser.add_argument('--num_img', default=-1, type=int, help='Cap number of image
 parser.add_argument('--path', type=str, default=None, help="Path to folders of epochs for analysis")
 parser.add_argument('--save_path', type=str, default=None, help="Path to saved results")
 parser.add_argument('--save_plot', type=str, default=None, help="Path to FID vs Epoch plot")
+parser.add_argument('--interval', type=int, default=300, help="Scanning Interval In Seconds")
+parser.add_argument('--scan', action="store_true", default=False, help="Scan for new folders")
 args = parser.parse_args()
 
 # scale an array of images to a new size
@@ -134,24 +137,30 @@ def save_fid_data(data, save_path):
 def find_training_fid(model, path, save_path):
 
 	fid_data = load_fid_data(save_path)
-	progbar = generic_utils.Progbar(len(os.listdir(path)))#, stateful_metrics=["epoch", "val", "train"])
+	epochs = [i for i in os.listdir(path) if os.path.isdir(os.path.join(path, i)) and int(i) not in fid_data]	
+	if len(epochs) == 0: return fid_data
 	
-	for i, epoch in enumerate(os.listdir(path)):
-		if not os.path.isdir(os.path.join(path, epoch)) or int(epoch) in fid_data: 
-			progbar.update(i+1)
-			continue	
-		#print("Epoch " + epoch)
-	
+	progbar = generic_utils.Progbar(len(epochs))#, stateful_metrics=["epoch", "val", "train"])
+
+	for i, epoch in enumerate(epochs):
 		fid_train = find_fid(model, os.path.join(path, epoch, "training", "full"), os.path.join(path, epoch, "training", "gen"))
 		fid_val = find_fid(model, os.path.join(path, epoch, "validation", "full"), os.path.join(path, epoch, "validation", "gen"))
 		
 		fid_data[int(epoch)] = [fid_train, fid_val]
-		#print(int(epoch), fid_train, fid_val)
 		progbar.update(i+1, values=[("epoch", int(epoch)), ("train", fid_train), ("val", fid_val)])
 		save_fid_data(fid_data, save_path)
 
 	return fid_data
 
+def scan_training_fid(model, path, save_path, save_plot, interval=300):
+	while True:
+		find_training_fid(model, path, save_path)
+		try:
+			plot_fid(save_path, save_plot)
+		except Exception as e:
+			print("Could Not Save Figure:", type(e).__name__)
+		time.sleep(interval)
+		
 def plot_fid(save_path, save_plot):
 	
 	fid_data = load_fid_data(save_path)
@@ -183,7 +192,8 @@ if __name__ == "__main__":
 	
 	if args.real_path and args.gen_path: 
 		images1, images2 = find_fid(model, args.real_path, args.gen_path, args.num_img)
-	elif args.path:
+	elif args.scan and args.path and args.save_path and args.save_plot:
+		scan_training_fid(model, args.path, args.save_path, args.save_plot, args.interval)
+	elif args.path and args.save_path and args.save_plot:
 		find_training_fid(model, args.path, args.save_path)		
-	if args.save_path and args.save_plot:
 		plot_fid(args.save_path, args.save_plot)	
