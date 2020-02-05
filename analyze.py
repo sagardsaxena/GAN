@@ -137,7 +137,7 @@ def save_fid_data(data, save_path):
 def find_training_fid(model, path, save_path):
 
 	fid_data = load_fid_data(save_path)
-	epochs = [i for i in os.listdir(path) if os.path.isdir(os.path.join(path, i)) and int(i) not in fid_data]	
+	epochs = [i for i in os.listdir(path) if os.path.isdir(os.path.join(path, i)) and i.isnumeric() and int(i) not in fid_data]	
 	if len(epochs) == 0: return fid_data
 	
 	progbar = generic_utils.Progbar(len(epochs))#, stateful_metrics=["epoch", "val", "train"])
@@ -154,8 +154,8 @@ def find_training_fid(model, path, save_path):
 
 def scan_training_fid(model, path, save_path, save_plot, interval=300):
 	while True:
-		find_training_fid(model, path, save_path)
 		try:
+			find_training_fid(model, path, save_path)
 			plot_fid(save_path, save_plot)
 		except Exception as e:
 			print("Could Not Save Figure:", type(e).__name__)
