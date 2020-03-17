@@ -62,3 +62,6 @@ class FID:
     
     def analyze(self, images1, images2):
         return self.find_fid(images1, images2)
+    
+    def __str__(self):
+        return 
