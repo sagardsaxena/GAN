@@ -47,6 +47,9 @@ class FID:
         images1 = self.scale_images(images1)
         images2 = self.scale_images(images2)
         
+        images1 = images1.astype('float32')
+        images2 = images2.astype('float32')
+        
         images1 = preprocess_input(images1)
         images2 = preprocess_input(images2)
         
@@ -56,4 +59,6 @@ class FID:
         images1, images2 = self.process_images(images1, images2)
         fid = self.calculate_fid(images1, images2)
         return fid
-
+    
+    def analyze(self, images1, images2):
+        return self.find_fid(images1, images2)
