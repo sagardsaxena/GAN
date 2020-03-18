@@ -64,4 +64,4 @@ class FID:
         return self.find_fid(images1, images2)
     
     def __str__(self):
-        return 
+        return "FID"
