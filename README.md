@@ -13,5 +13,6 @@ This project looks to investigate the performance of various Image-To-Image Gene
 git --recurse-submodules clone git@github.com:sagars729/GAN.git
 cd GAN
 conda env create -f gan_env.yaml
+conda activate gan
 jupyter lab
 ```
