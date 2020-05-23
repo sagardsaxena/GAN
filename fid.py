@@ -2,15 +2,15 @@ import os
 os.environ["KERAS_BACKEND"] = "tensorflow"
 
 import numpy as np
-from keras.applications.inception_v3 import InceptionV3
-from keras.applications.inception_v3 import preprocess_input
-from keras.datasets.mnist import load_data
+from tensorflow.keras.applications.inception_v3 import InceptionV3
+from tensorflow.keras.applications.inception_v3 import preprocess_input
+from tensorflow.keras.datasets.mnist import load_data
 from scipy.linalg import sqrtm
 
 import cv2
 import argparse
 import matplotlib.pyplot as plt
-from keras.utils import generic_utils
+#from tensorflow.keras.utils import generic_utils
 import time
 try: import cPickle as pickle 
 except: import pickle
