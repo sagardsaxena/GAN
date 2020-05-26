@@ -4,3 +4,6 @@
 [submodule "CycleGAN"]
 	path = CycleGAN
 	url = git@github.com:sagars729/cyclegan-1.git
+[submodule "StarGAN"]
+	path = StarGAN
+	url = git@github.com:sagars729/StarGAN-Tensorflow.git
