@@ -1,3 +1,6 @@
 [submodule "Pix2Pix"]
 	path = Pix2Pix
 	url = git@github.com:sagars729/Pix2Pix.git
+[submodule "CycleGAN"]
+	path = CycleGAN
+	url = git@github.com:sagars729/cyclegan-1.git
