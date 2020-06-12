@@ -7,3 +7,6 @@
 [submodule "StarGAN"]
 	path = StarGAN
 	url = git@github.com:sagars729/StarGAN-Tensorflow.git
+[submodule "StyleGAN2"]
+	path = StyleGAN2
+	url = git@github.com:sagars729/stylegan2.git
