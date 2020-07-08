@@ -10,3 +10,6 @@
 [submodule "StyleGAN2"]
 	path = StyleGAN2
 	url = git@github.com:sagars729/stylegan2.git
+[submodule "Self-Attention-GAN"]
+	path = Self-Attention-GAN
+	url = git@github.com:sagars729/Self-Attention-GAN.git
