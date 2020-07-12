@@ -1,0 +1,11 @@
+name: style
+channels:
+  - anaconda
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.6.10
+  - jupyterlab
+  - jupyter
+  - tensorflow-gpu=1.14.0
+  - pillow
