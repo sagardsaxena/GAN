@@ -4,3 +4,7 @@
 *.jpg
 *.ipynb_checkpoints/
 __pycache__/
+data/*.zip
+data/*.tgz
+data/*.tar.gz
+data/CUB_200
