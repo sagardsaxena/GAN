@@ -13,3 +13,6 @@
 [submodule "Self-Attention-GAN"]
 	path = Self-Attention-GAN
 	url = git@github.com:sagars729/Self-Attention-GAN.git
+[submodule "Pix2Pix-TF"]
+	path = Pix2Pix-TF
+	url = git@github.com:sagars729/pix2pix-tensorflow.git
