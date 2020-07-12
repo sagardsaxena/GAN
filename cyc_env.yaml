@@ -1,0 +1,14 @@
+name: cyc
+channels:
+  - anaconda
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.6.10
+  - jupyterlab
+  - jupyter
+  - tensorflow-gpu=1.14.0
+  - scipy=1.1.0
+  - pillow
+  - tqdm
+  - click
