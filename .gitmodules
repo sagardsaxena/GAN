@@ -16,3 +16,9 @@
 [submodule "Pix2Pix-TF"]
 	path = Pix2Pix-TF
 	url = git@github.com:sagars729/pix2pix-tensorflow.git
+[submodule "precision-recall-distributions"]
+	path = precision-recall-distributions
+	url = git@github.com:sagars729/precision-recall-distributions.git
+[submodule "TTUR"]
+	path = TTUR
+	url = git@github.com:sagars729/TTUR.git
