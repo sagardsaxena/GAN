@@ -1,0 +1,9 @@
+name: fid
+channels:
+  - anaconda
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.6.10
+  - tensorflow-gpu=1.14.0
+  - imageio
